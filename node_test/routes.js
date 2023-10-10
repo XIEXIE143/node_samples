@@ -1,5 +1,7 @@
 // Expressモジュール読み込み
 const express = require('express')
+// models/itemモジュール読み込み
+const item = require('./models/item')
 
 // Routerの利用
 const router = express.Router()
@@ -14,6 +16,14 @@ router.get('/', (req, res) => {
 
 router.get('/profile', (req, res) => {
     res.send('プロフィールページ')
+})
+
+// 商品IDから商品取得(URLパラメータ)（「id」をプレースホルダー）
+router.get('/item/:id', (req, res) => {
+    const id = req.params.id
+    var selectItem = item.find(id)
+    var message = "商品名:" + selectItem.name
+    res.send(message)
 })
 
 // ログイン認証（POST）

@@ -1,12 +1,16 @@
 const fs = require('fs');
-const values = JSON.parse(fs.readFileSync('./data/items.json', 'utf8'));
 
-// すべてのデータ取得
+// JSONファイルのパス
+var dataFile = "./data/items.json"
+
 exports.get = () => {
-    return values
+    var values = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+    return values;
 }
 
-// IDからデータ取得
 exports.find = (id) => {
-    return values.find((value) => value.id == id)
+    var values = this.get();
+    return values.find((value) => value.id == id);
 }
+
+module.exports = this
